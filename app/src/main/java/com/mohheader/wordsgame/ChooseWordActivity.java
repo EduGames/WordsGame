@@ -1,7 +1,7 @@
 package com.mohheader.wordsgame;
 
+import android.app.Activity;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChooseWordActivity extends ActionBarActivity {
+public class ChooseWordActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
