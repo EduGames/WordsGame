@@ -7,7 +7,9 @@
         android:label="@string/app_name" >
         <activity
             android:name=".ChooseWordActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="locale"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
