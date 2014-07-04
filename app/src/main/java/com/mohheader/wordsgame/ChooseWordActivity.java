@@ -2,10 +2,11 @@ package com.mohheader.wordsgame;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -19,6 +20,10 @@ public class ChooseWordActivity extends ParentActivity implements View.OnClickLi
         setContentView(R.layout.activity_choose_word);
         WordsManager.setContext(this);
         List<Word> words = WordsManager.getRandom(3);
+        final SoundPool sp = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
+        final int soundIds[] = new int[2];
+        soundIds[0] = sp.load(this, R.raw.wrong, 1);
+
 
         final Word rightWord = words.get(new Random().nextInt((words.size())));
         ((TextView)findViewById(R.id.word_title)).setText(rightWord.getTitle());
@@ -33,6 +38,8 @@ public class ChooseWordActivity extends ParentActivity implements View.OnClickLi
                 public void onClick(View view) {
                     if(rightWord.getTitle().equals(word.getTitle())){
                         restart();
+                    }else{
+                        sp.play(soundIds[0], 1, 1, 1, 0, 1.0f);
                     }
                 }
             });
