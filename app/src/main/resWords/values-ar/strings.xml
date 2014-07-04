@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tree">شجرة</string>
+    <string name="ball">كرة</string>
+    <string name="lion">أسد</string>
+    <string name="apple">تفاحة</string>
+    <string name="grape">عنب</string>
+    <string name="flower">وردة</string>
+    <string name="elephant">فيل</string>
+    <string name="door">باب</string>
+    <string name="monkey">قرد</string>
+    <string name="cat">قط</string>
+    <string name="pen">قلم</string>
+    <string name="dog">كلب</string>
+    <string name="rabbit">أرنب</string>
+    <string name="fish">سمكة</string>
+    <string name="bear">دب</string>
+</resources>

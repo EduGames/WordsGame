@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Words Game</string>
-
-    <string name="tree">TREE TREE</string>
-    <string name="ball">BALL BALL</string>
 </resources>
