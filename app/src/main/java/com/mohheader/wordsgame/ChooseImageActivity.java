@@ -12,15 +12,12 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by thedreamer on 7/5/14.
- */
-public class ChooseWordActivity extends ParentActivity implements View.OnClickListener {
+public class ChooseImageActivity extends ParentActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_image);
+        setContentView(R.layout.activity_choose_word);
         WordsManager.setContext(this);
         List<Word> words = WordsManager.getRandom(3);
         final SoundPool sp = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
@@ -29,13 +26,13 @@ public class ChooseWordActivity extends ParentActivity implements View.OnClickLi
 
 
         final Word rightWord = words.get(new Random().nextInt((words.size())));
-        Drawable d = getResources().getDrawable(rightWord.getDrawableResource());
-        ((ImageView)findViewById(R.id.word_title)).setImageDrawable(d);
+        ((TextView)findViewById(R.id.word_title)).setText(rightWord.getTitle());
 
         for (int i = 0; i < words.size();i++){
             final Word word = words.get(i);
+            Drawable d = getResources().getDrawable(word.getDrawableResource());
             int id = getResources().getIdentifier("image_"+(i+1), "id", getPackageName());
-            ((TextView)findViewById(id)).setText(word.getTitle());
+            ((ImageView)findViewById(id)).setImageDrawable(d);
             findViewById(id).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
