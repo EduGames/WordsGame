@@ -7,7 +7,7 @@
     android:id="@+id/container"
     tools:context=".ChooseWordActivity">
 
-    <ImageView
+    <com.mohheader.wordsgame.views.WordImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:scaleType="fitCenter"
@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="83dp" />
 
-    <ImageView
+    <com.mohheader.wordsgame.views.WordImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:scaleType="fitCenter"
@@ -26,7 +26,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="100dp" />
 
-    <ImageView
+    <com.mohheader.wordsgame.views.WordImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:scaleType="fitCenter"
@@ -36,7 +36,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="72dp" />
 
-    <TextView
+    <com.mohheader.wordsgame.views.WordTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"

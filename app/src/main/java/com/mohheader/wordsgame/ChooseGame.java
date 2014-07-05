@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.mohheader.wordsgame.games.ChooseImageActivity;
+import com.mohheader.wordsgame.games.ChooseWordActivity;
+
 /**
  * Created by thedreamer on 7/5/14.
  */
