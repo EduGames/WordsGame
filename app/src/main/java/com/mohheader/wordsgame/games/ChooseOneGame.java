@@ -9,6 +9,7 @@ import android.widget.RatingBar;
 
 import com.mohheader.wordsgame.ParentActivity;
 import com.mohheader.wordsgame.R;
+import com.mohheader.wordsgame.models.GamesManager;
 import com.mohheader.wordsgame.models.Score;
 import com.mohheader.wordsgame.models.ScoreManager;
 import com.mohheader.wordsgame.models.Word;
@@ -60,7 +61,11 @@ abstract class ChooseOneGame extends ParentActivity {
     private void rightAnswer() {
         score.addOne();
         ScoreManager.save(this, score);
-        restart();
+        if(score.getScore() >= ScoreManager.getMaxScore()){
+            GamesManager.successCurrentGame(this,getGameLevel());
+            finish();
+        }else
+            restart();
     }
 
     private void wrongAnswer() {
@@ -75,6 +80,7 @@ abstract class ChooseOneGame extends ParentActivity {
 
     abstract int getContentView();
     abstract String getGameName();
+    abstract int getGameLevel();
 
     private void restart(){
         Intent intent = getIntent();

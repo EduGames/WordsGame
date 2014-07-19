@@ -18,7 +18,7 @@ public class ScoreManager {
         SharedPreferences prefs = context
                 .getSharedPreferences("Score", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putFloat(score.getGame(),score.getScore());
+        editor.putFloat(score.getGame(), score.getScore());
         editor.apply();
     }
     public static void clearAll(Context context) {
@@ -26,5 +26,9 @@ public class ScoreManager {
         SharedPreferences.Editor editor = prefs.edit();
         editor.clear();
         editor.apply();
+    }
+
+    public static int getMaxScore() {
+        return 16;
     }
 }

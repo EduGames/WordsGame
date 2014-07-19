@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.mohheader.wordsgame.games.ChooseImageActivity;
 import com.mohheader.wordsgame.games.ChooseWordActivity;
+import com.mohheader.wordsgame.models.GamesManager;
 import com.mohheader.wordsgame.models.ScoreManager;
 
 /**
@@ -25,13 +26,17 @@ public class ChooseGame extends ParentActivity implements View.OnClickListener {
     public void onClick(View view) {
         Intent i;
         switch (view.getId()){
-            case R.id.word:
-                i = new Intent(ChooseGame.this,ChooseWordActivity.class);
-                startActivity(i);
-                break;
             case R.id.image:
-                i = new Intent(ChooseGame.this,ChooseImageActivity.class);
-                startActivity(i);
+                if(GamesManager.getCurrentGame(this) >= ChooseImageActivity.GAME_LEVEL){
+                    i = new Intent(ChooseGame.this,ChooseImageActivity.class);
+                    startActivity(i);
+                }
+                break;
+            case R.id.word:
+                if(GamesManager.getCurrentGame(this) >= ChooseWordActivity.GAME_LEVEL ){
+                    i = new Intent(ChooseGame.this,ChooseWordActivity.class);
+                    startActivity(i);
+                }
                 break;
         }
 
