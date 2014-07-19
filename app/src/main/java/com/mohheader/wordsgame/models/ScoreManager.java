@@ -8,17 +8,17 @@ import android.content.SharedPreferences;
  */
 public class ScoreManager {
 
-    public static int getLastScore(Context context, String gameName) {
+    public static float getLastScore(Context context, String gameName) {
         SharedPreferences prefs = context
                 .getSharedPreferences("Score", Context.MODE_PRIVATE);;
-        return prefs.getInt(gameName, 0);
+        return prefs.getFloat(gameName, 0);
     }
 
     public static void save(Context context, Score score) {
         SharedPreferences prefs = context
                 .getSharedPreferences("Score", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(score.getGame(),score.getScore());
+        editor.putFloat(score.getGame(),score.getScore());
         editor.apply();
     }
     public static void clearAll(Context context) {

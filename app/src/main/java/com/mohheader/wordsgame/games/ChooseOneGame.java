@@ -35,7 +35,7 @@ abstract class ChooseOneGame extends ParentActivity {
         soundIds[0] = sp.load(this, R.raw.wrong, 1);
 
         score = new Score(getGameName(), ScoreManager.getLastScore(this,getGameName()));
-        ((RatingBar)findViewById(R.id.rating)).setRating((score.getScore()) / 2f);
+        updateRatingBar();
         final Word rightWord = words.get(new Random().nextInt((words.size())));
         ((wordable)findViewById(R.id.word_title)).setWord(rightWord);
 
@@ -64,7 +64,13 @@ abstract class ChooseOneGame extends ParentActivity {
     }
 
     private void wrongAnswer() {
+        score.minusHalf();
+        ScoreManager.save(this, score);
+        updateRatingBar();
         sp.play(soundIds[0], 1, 1, 1, 0, 1.0f);
+    }
+    private void updateRatingBar(){
+        ((RatingBar)findViewById(R.id.rating)).setRating(score.getScore());
     }
 
     abstract int getContentView();
