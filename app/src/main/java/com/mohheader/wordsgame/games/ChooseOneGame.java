@@ -8,8 +8,8 @@ import android.view.View;
 
 import com.mohheader.wordsgame.ParentActivity;
 import com.mohheader.wordsgame.R;
-import com.mohheader.wordsgame.Word;
-import com.mohheader.wordsgame.WordsManager;
+import com.mohheader.wordsgame.models.Word;
+import com.mohheader.wordsgame.models.WordsManager;
 import com.mohheader.wordsgame.interfaces.wordable;
 
 import java.util.List;

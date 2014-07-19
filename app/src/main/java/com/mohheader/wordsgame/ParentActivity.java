@@ -21,6 +21,7 @@ public class ParentActivity extends Activity {
             config.locale = locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }
+        getActionBar().hide();
     }
 
     private Locale locale = null;

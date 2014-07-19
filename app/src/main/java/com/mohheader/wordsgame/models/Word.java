@@ -1,4 +1,4 @@
-package com.mohheader.wordsgame;
+package com.mohheader.wordsgame.models;
 
 /**
  * Created by mohheader on 6/22/14.

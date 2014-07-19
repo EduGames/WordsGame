@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="tree">TREE</string>
-    <string name="ball">BALL</string>
+    <string name="tree">Tree</string>
+    <string name="ball">Ball</string>
+    <string name="lion">Lion</string>
+    <string name="apple">Apple</string>
+    <string name="grape">Grape</string>
+    <string name="flower">Flower</string>
+    <string name="elephant">Elephant</string>
+    <string name="door">Door</string>
+    <string name="monkey">Monkey</string>
+    <string name="cat">Cat</string>
+    <string name="pen">Pen</string>
+    <string name="dog">Dog</string>
+    <string name="rabbit">Rabbit</string>
+    <string name="fish">Fish</string>
+    <string name="bear">Bear</string>
 </resources>

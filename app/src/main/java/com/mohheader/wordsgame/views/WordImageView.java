@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.mohheader.wordsgame.Word;
+import com.mohheader.wordsgame.models.Word;
 import com.mohheader.wordsgame.interfaces.wordable;
 
 /**

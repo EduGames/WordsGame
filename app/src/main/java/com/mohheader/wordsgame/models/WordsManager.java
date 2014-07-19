@@ -1,7 +1,8 @@
-package com.mohheader.wordsgame;
+package com.mohheader.wordsgame.models;
 
 import android.content.Context;
 
+import com.mohheader.wordsgame.R;
 import com.mohheader.wordsgame.utils.Random;
 
 import java.util.ArrayList;
