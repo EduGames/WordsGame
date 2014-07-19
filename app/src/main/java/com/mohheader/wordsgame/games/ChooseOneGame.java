@@ -5,9 +5,12 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RatingBar;
 
 import com.mohheader.wordsgame.ParentActivity;
 import com.mohheader.wordsgame.R;
+import com.mohheader.wordsgame.models.Score;
+import com.mohheader.wordsgame.models.ScoreManager;
 import com.mohheader.wordsgame.models.Word;
 import com.mohheader.wordsgame.models.WordsManager;
 import com.mohheader.wordsgame.interfaces.wordable;
@@ -19,17 +22,20 @@ import java.util.Random;
  * Created by thedreamer on 7/5/14.
  */
 abstract class ChooseOneGame extends ParentActivity {
+    final int soundIds[] = new int[2];
+    SoundPool sp;
+    Score score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentView());
         WordsManager.setContext(this);
         List<Word> words = WordsManager.getRandom(3);
-        final SoundPool sp = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
-        final int soundIds[] = new int[2];
+        sp = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
         soundIds[0] = sp.load(this, R.raw.wrong, 1);
 
-
+        score = new Score(getGameName(), ScoreManager.getLastScore(this,getGameName()));
+        ((RatingBar)findViewById(R.id.rating)).setRating((score.getScore()) / 2f);
         final Word rightWord = words.get(new Random().nextInt((words.size())));
         ((wordable)findViewById(R.id.word_title)).setWord(rightWord);
 
@@ -41,9 +47,9 @@ abstract class ChooseOneGame extends ParentActivity {
                 @Override
                 public void onClick(View view) {
                     if(rightWord.getTitle().equals(word.getTitle())){
-                        restart();
+                        rightAnswer();
                     }else{
-                        sp.play(soundIds[0], 1, 1, 1, 0, 1.0f);
+                        wrongAnswer();
                     }
                 }
             });
@@ -51,7 +57,18 @@ abstract class ChooseOneGame extends ParentActivity {
 
     }
 
+    private void rightAnswer() {
+        score.addOne();
+        ScoreManager.save(this, score);
+        restart();
+    }
+
+    private void wrongAnswer() {
+        sp.play(soundIds[0], 1, 1, 1, 0, 1.0f);
+    }
+
     abstract int getContentView();
+    abstract String getGameName();
 
     private void restart(){
         Intent intent = getIntent();

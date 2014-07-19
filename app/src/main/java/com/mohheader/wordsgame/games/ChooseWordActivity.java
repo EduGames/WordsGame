@@ -9,4 +9,9 @@ public class ChooseWordActivity extends ChooseOneGame {
     int getContentView() {
         return R.layout.activity_choose_image;
     }
+
+    @Override
+    String getGameName() {
+        return "ChooseWord";
+    }
 }
