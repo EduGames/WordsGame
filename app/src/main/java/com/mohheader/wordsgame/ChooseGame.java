@@ -27,6 +27,7 @@ public class ChooseGame extends ParentActivity implements View.OnClickListener {
         Intent i;
         switch (view.getId()){
             case R.id.image:
+                //TODO : Refactor ( GamesManager.isLevelGameAble(ChooseImageActivity);  )
                 if(GamesManager.getCurrentGame(this) >= ChooseImageActivity.GAME_LEVEL){
                     i = new Intent(ChooseGame.this,ChooseImageActivity.class);
                     startActivity(i);
