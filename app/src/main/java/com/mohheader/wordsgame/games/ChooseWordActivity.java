@@ -11,12 +11,10 @@ public class ChooseWordActivity extends ChooseOneGame {
         return R.layout.activity_choose_image;
     }
 
-    @Override
-    String getGameName() {
+    public String getGameName() {
         return "ChooseWord";
     }
-    @Override
-    int getGameLevel() {
+    public int getGameLevel() {
         return GAME_LEVEL;
     }
 }

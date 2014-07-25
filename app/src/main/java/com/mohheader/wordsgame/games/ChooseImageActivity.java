@@ -8,13 +8,11 @@ public class ChooseImageActivity extends ChooseOneGame{
         return R.layout.activity_choose_word;
     }
 
-    @Override
-    String getGameName() {
+    public String getGameName() {
         return "ChooseImage";
     }
 
-    @Override
-    int getGameLevel() {
+    public int getGameLevel() {
         return GAME_LEVEL;
     }
 }

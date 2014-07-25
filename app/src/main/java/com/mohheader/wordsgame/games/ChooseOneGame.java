@@ -22,10 +22,15 @@ import java.util.Random;
 /**
  * Created by thedreamer on 7/5/14.
  */
-abstract class ChooseOneGame extends ParentActivity {
+abstract class ChooseOneGame extends GameActivity {
     final int soundIds[] = new int[2];
     SoundPool sp;
     Score score;
+
+    enum sounds{
+        WRONG, CHEERING
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,8 @@ abstract class ChooseOneGame extends ParentActivity {
         WordsManager.setContext(this);
         List<Word> words = WordsManager.getRandom(3);
         sp = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
-        soundIds[0] = sp.load(this, R.raw.wrong, 1);
+        soundIds[sounds.WRONG.ordinal()] = sp.load(this, R.raw.wrong, 1);
+        soundIds[sounds.CHEERING.ordinal()] = sp.load(this, R.raw.cheering, 1);
 
         score = new Score(getGameName(), ScoreManager.getLastScore(this,getGameName()));
         updateRatingBar();
@@ -59,6 +65,7 @@ abstract class ChooseOneGame extends ParentActivity {
     }
 
     private void rightAnswer() {
+        sp.play(soundIds[sounds.CHEERING.ordinal()], 1, 1, 1, 0, 1.0f);
         score.addOne();
         ScoreManager.save(this, score);
         if(score.getScore() >= ScoreManager.getMaxScore()){
@@ -72,15 +79,13 @@ abstract class ChooseOneGame extends ParentActivity {
         score.minusHalf();
         ScoreManager.save(this, score);
         updateRatingBar();
-        sp.play(soundIds[0], 1, 1, 1, 0, 1.0f);
+        sp.play(soundIds[sounds.WRONG.ordinal()], 1, 1, 1, 0, 1.0f);
     }
     private void updateRatingBar(){
         ((RatingBar)findViewById(R.id.rating)).setRating(score.getScore());
     }
 
     abstract int getContentView();
-    abstract String getGameName();
-    abstract int getGameLevel();
 
     private void restart(){
         Intent intent = getIntent();

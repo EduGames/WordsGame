@@ -8,6 +8,7 @@ import com.mohheader.wordsgame.games.ChooseImageActivity;
 import com.mohheader.wordsgame.games.ChooseWordActivity;
 import com.mohheader.wordsgame.models.GamesManager;
 import com.mohheader.wordsgame.models.ScoreManager;
+import com.mohheader.wordsgame.views.LevelTitle;
 
 /**
  * Created by thedreamer on 7/5/14.
@@ -20,6 +21,13 @@ public class ChooseGame extends ParentActivity implements View.OnClickListener {
         findViewById(R.id.word).setOnClickListener(this);
         findViewById(R.id.image).setOnClickListener(this);
         ScoreManager.clearAll(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((LevelTitle)findViewById(R.id.word)).setGame(new ChooseWordActivity());
+        ((LevelTitle)findViewById(R.id.image)).setGame(new ChooseImageActivity());
     }
 
     @Override
