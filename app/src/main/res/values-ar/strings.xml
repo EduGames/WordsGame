@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ChooseImage">ChooseImage</string>
-    <string name="ChooseWord">ChooseWord</string>
+    <string name="ChooseImage">اختر صورة</string>
+    <string name="ChooseWord">اختر كلمة</string>
 </resources>

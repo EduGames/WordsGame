@@ -42,6 +42,7 @@ abstract class ChooseOneGame extends GameActivity {
         soundIds[sounds.CHEERING.ordinal()] = sp.load(this, R.raw.cheering, 1);
 
         score = new Score(getGameName(), ScoreManager.getLastScore(this,getGameName()));
+        ((RatingBar)findViewById(R.id.rating)).setNumStars(ScoreManager.getMaxScore());
         updateRatingBar();
         final Word rightWord = words.get(new Random().nextInt((words.size())));
         ((wordable)findViewById(R.id.word_title)).setWord(rightWord);
@@ -89,6 +90,7 @@ abstract class ChooseOneGame extends GameActivity {
 
     private void restart(){
         Intent intent = getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         finish();
         startActivity(intent);
     }
