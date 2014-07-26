@@ -1,6 +1,7 @@
 package com.mohheader.wordsgame.games.missingletters;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.mohheader.wordsgame.R;
 import com.mohheader.wordsgame.games.GameActivity;
 import com.mohheader.wordsgame.games.missingletters.logic.LetterManager;
+import com.mohheader.wordsgame.models.GamesManager;
 import com.mohheader.wordsgame.models.Word;
 import com.mohheader.wordsgame.models.WordsManager;
 import com.mohheader.wordsgame.views.WordTextView;
@@ -19,9 +21,10 @@ import java.util.List;
  * Created by thedreamer on 7/25/14.
  */
 public class BaseActivity extends GameActivity{
-    public final static int GAME_LEVEL = 0;
+    public final static int GAME_LEVEL = GamesManager.Games.MissingLetter.ordinal();
     int missingLetterNumber = 1;
     Word word;
+    WordTextView missingLetterTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +41,10 @@ public class BaseActivity extends GameActivity{
         for(String s : d){
             WordTextView tv = new WordTextView(this);
             tv.setText(s);
-            if (s.equals(LetterManager.MISSING_DOTS))
+            if (s.equals(LetterManager.MISSING_DOTS)) {
+                missingLetterTV = tv;
                 tv.setPadding(20, 0, 20, 0);
+            }
             tv.setTextSize(30);
             llWord.addView(tv);
         }
@@ -53,7 +58,7 @@ public class BaseActivity extends GameActivity{
                 @Override
                 public void onClick(View view) {
                     if(s.equals(String.valueOf(word.getTitle().charAt(missingLetterNumber)))){
-                        wrightAnswer();
+                        wrightAnswer(s);
 
                     }else{
                         wrongAnswer();
@@ -63,20 +68,31 @@ public class BaseActivity extends GameActivity{
             llLetters.addView(tv);
         }
     }
-    private void wrightAnswer() {
-        finish();
+    private void wrightAnswer(String s) {
+        String before = "";
+        if(missingLetterNumber > 0)
+            before = word.getTitle().charAt(missingLetterNumber - 1)+"";
+        boolean isLast = false;
+        if(missingLetterNumber ==word.getTitle().length() -1)
+            isLast = true;
+        missingLetterTV.setText(LetterManager.correct(before,word.getTitle().charAt(missingLetterNumber),isLast));
+        missingLetterTV.setPadding(0, 0, 0, 0);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                restart();
+            }
+        }, 1500);
     }
     private void wrongAnswer() {
 
     }
 
-    @Override
-    public int getGameLevel() {
-        return 0;
-    }
-
-    @Override
     public String getGameName() {
-        return "MissingLetter";
+        return GamesManager.Games.MissingLetter.getName();
+    }
+    public int getGameLevel() {
+        return GAME_LEVEL;
     }
 }

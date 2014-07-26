@@ -65,7 +65,7 @@ public class LetterManager {
         return result;
     }
 
-    private static String correct(String before, char letter, boolean isLast){
+    public static String correct(String before, char letter, boolean isLast){
         StringBuilder result = new StringBuilder();
         if(!sufix.contains(""+before)){
             result.append("ـ");
