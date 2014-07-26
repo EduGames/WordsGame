@@ -3,4 +3,5 @@
     <string name="app_name">Words Game</string>
     <string name="ChooseImage">ChooseImage</string>
     <string name="ChooseWord">ChooseWord</string>
+    <string name="MissingLetter">اختر حرف</string>
 </resources>

@@ -2,4 +2,5 @@
 <resources>
     <string name="ChooseImage">اختر صورة</string>
     <string name="ChooseWord">اختر كلمة</string>
+    <string name="MissingLetter">اختر حرف</string>
 </resources>
