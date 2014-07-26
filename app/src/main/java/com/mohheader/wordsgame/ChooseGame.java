@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.mohheader.wordsgame.games.ChooseImageActivity;
 import com.mohheader.wordsgame.games.ChooseWordActivity;
+import com.mohheader.wordsgame.games.missingletters.BaseActivity;
 import com.mohheader.wordsgame.models.GamesManager;
 import com.mohheader.wordsgame.models.ScoreManager;
 import com.mohheader.wordsgame.views.LevelTitle;
@@ -13,13 +14,20 @@ import com.mohheader.wordsgame.views.LevelTitle;
 /**
  * Created by thedreamer on 7/5/14.
  */
-public class ChooseGame extends ParentActivity implements View.OnClickListener {
+public class ChooseGame extends ParentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_game);
-        findViewById(R.id.word).setOnClickListener(this);
-        findViewById(R.id.image).setOnClickListener(this);
+
+        findViewById(R.id.word).setOnClickListener(new GameClickListener(ChooseWordActivity.class,
+                ChooseWordActivity.GAME_LEVEL));
+
+        findViewById(R.id.image).setOnClickListener(new GameClickListener(ChooseImageActivity.class,
+                ChooseImageActivity.GAME_LEVEL));
+
+        findViewById(R.id.missing).setOnClickListener(new GameClickListener(BaseActivity.class,
+                BaseActivity.GAME_LEVEL));
         ScoreManager.clearAll(this);
     }
 
@@ -28,26 +36,22 @@ public class ChooseGame extends ParentActivity implements View.OnClickListener {
         super.onResume();
         ((LevelTitle)findViewById(R.id.word)).setGame(new ChooseWordActivity());
         ((LevelTitle)findViewById(R.id.image)).setGame(new ChooseImageActivity());
+        ((LevelTitle)findViewById(R.id.missing)).setGame(new BaseActivity());
     }
 
-    @Override
-    public void onClick(View view) {
-        Intent i;
-        switch (view.getId()){
-            case R.id.image:
-                //TODO : Refactor ( GamesManager.isLevelGameAble(ChooseImageActivity);  )
-                if(GamesManager.getCurrentGame(this) >= ChooseImageActivity.GAME_LEVEL){
-                    i = new Intent(ChooseGame.this,ChooseImageActivity.class);
-                    startActivity(i);
-                }
-                break;
-            case R.id.word:
-                if(GamesManager.getCurrentGame(this) >= ChooseWordActivity.GAME_LEVEL ){
-                    i = new Intent(ChooseGame.this,ChooseWordActivity.class);
-                    startActivity(i);
-                }
-                break;
+    private class GameClickListener implements View.OnClickListener {
+        Class gameClass;
+        int gameLevel;
+        GameClickListener(Class gameClass, int gameLevel){
+            this.gameClass = gameClass;
+            this.gameLevel = gameLevel;
         }
-
+        @Override
+        public void onClick(View view) {
+            if(GamesManager.getCurrentGame(ChooseGame.this) >= gameLevel){
+                Intent i = new Intent(ChooseGame.this,gameClass);
+                startActivity(i);
+            }
+        }
     }
 }

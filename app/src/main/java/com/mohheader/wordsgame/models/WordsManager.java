@@ -28,6 +28,10 @@ public class WordsManager {
         return words;
     }
 
+    public static Word getRandrom(){
+        return getRandom(1).get(0);
+    }
+
     public static void setContext(Context _context) {
         context = _context;
     }

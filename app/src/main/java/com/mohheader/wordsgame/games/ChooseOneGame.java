@@ -35,7 +35,7 @@ abstract class ChooseOneGame extends GameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentView());
-        WordsManager.setContext(this);
+        WordsManager.setContext(getApplicationContext());
         List<Word> words = WordsManager.getRandom(3);
         sp = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
         soundIds[sounds.WRONG.ordinal()] = sp.load(this, R.raw.wrong, 1);
