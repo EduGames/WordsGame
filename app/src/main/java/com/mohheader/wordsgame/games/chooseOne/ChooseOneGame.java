@@ -1,4 +1,4 @@
-package com.mohheader.wordsgame.games;
+package com.mohheader.wordsgame.games.chooseOne;
 
 import android.content.Intent;
 import android.media.AudioManager;
@@ -9,6 +9,7 @@ import android.widget.RatingBar;
 
 import com.mohheader.wordsgame.ParentActivity;
 import com.mohheader.wordsgame.R;
+import com.mohheader.wordsgame.games.GameActivity;
 import com.mohheader.wordsgame.models.GamesManager;
 import com.mohheader.wordsgame.models.Score;
 import com.mohheader.wordsgame.models.ScoreManager;
@@ -23,13 +24,6 @@ import java.util.Random;
  * Created by thedreamer on 7/5/14.
  */
 abstract class ChooseOneGame extends GameActivity {
-    final int soundIds[] = new int[2];
-    SoundPool sp;
-    Score score;
-
-    enum sounds{
-        WRONG, CHEERING
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +31,7 @@ abstract class ChooseOneGame extends GameActivity {
         setContentView(getContentView());
         WordsManager.setContext(getApplicationContext());
         List<Word> words = WordsManager.getRandom(3);
-        sp = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
-        soundIds[sounds.WRONG.ordinal()] = sp.load(this, R.raw.wrong, 1);
-        soundIds[sounds.CHEERING.ordinal()] = sp.load(this, R.raw.cheering, 1);
 
-        score = new Score(getGameName(), ScoreManager.getLastScore(this,getGameName()));
         ((RatingBar)findViewById(R.id.rating)).setNumStars(ScoreManager.getMaxScore());
         updateRatingBar();
         final Word rightWord = words.get(new Random().nextInt((words.size())));
@@ -62,13 +52,11 @@ abstract class ChooseOneGame extends GameActivity {
                 }
             });
         }
-
     }
 
     private void rightAnswer() {
-        sp.play(soundIds[sounds.CHEERING.ordinal()], 1, 1, 1, 0, 1.0f);
-        score.addOne();
-        ScoreManager.save(this, score);
+        playSound(sounds.CHEERING);
+        ScoreManager.save(this, score.addOne());
         if(score.getScore() >= ScoreManager.getMaxScore()){
             GamesManager.successCurrentGame(this,getGameLevel());
             finish();
@@ -77,21 +65,13 @@ abstract class ChooseOneGame extends GameActivity {
     }
 
     private void wrongAnswer() {
-        score.minusHalf();
-        ScoreManager.save(this, score);
+        ScoreManager.save(this, score.minusHalf());
         updateRatingBar();
-        sp.play(soundIds[sounds.WRONG.ordinal()], 1, 1, 1, 0, 1.0f);
+        playSound(sounds.WRONG);
     }
     private void updateRatingBar(){
         ((RatingBar)findViewById(R.id.rating)).setRating(score.getScore());
     }
 
     abstract int getContentView();
-
-    private void restart(){
-        Intent intent = getIntent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        finish();
-        startActivity(intent);
-    }
 }

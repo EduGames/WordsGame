@@ -1,4 +1,4 @@
-package com.mohheader.wordsgame.games;
+package com.mohheader.wordsgame.games.chooseOne;
 
 import com.mohheader.wordsgame.R;
 import com.mohheader.wordsgame.models.GamesManager;

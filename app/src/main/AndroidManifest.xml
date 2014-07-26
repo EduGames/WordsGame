@@ -13,10 +13,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".games.ChooseImageActivity"
+            android:name=".games.chooseOne.ChooseImageActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".games.ChooseWordActivity"
+            android:name=".games.chooseOne.ChooseWordActivity"
             android:screenOrientation="landscape"/>
         <activity
             android:name=".games.missingletters.BaseActivity"

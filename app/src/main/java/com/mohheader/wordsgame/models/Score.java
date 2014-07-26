@@ -15,11 +15,13 @@ public class Score {
         score = score + n;
         if(score < 0) score = 0;
     }
-    public void addOne(){
+    public Score addOne(){
         add(1);
+        return this;
     }
-    public void minusHalf(){
+    public Score minusHalf(){
         add(- 0.5f);
+        return this;
     }
     public float getScore(){
         return score;

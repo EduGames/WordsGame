@@ -11,6 +11,7 @@ import com.mohheader.wordsgame.games.GameActivity;
 import com.mohheader.wordsgame.games.missingletters.logic.LetterManager;
 import com.mohheader.wordsgame.models.Word;
 import com.mohheader.wordsgame.models.WordsManager;
+import com.mohheader.wordsgame.views.WordTextView;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class BaseActivity extends GameActivity{
         ((ImageView)findViewById(R.id.image)).setImageDrawable(word.getDrawable(this));
 
         for(String s : d){
-            TextView tv = new TextView(this);
+            WordTextView tv = new WordTextView(this);
             tv.setText(s);
             if (s.equals(LetterManager.MISSING_DOTS))
                 tv.setPadding(20, 0, 20, 0);
@@ -44,7 +45,7 @@ public class BaseActivity extends GameActivity{
         }
 
         for(final String s : LetterManager.randomLetters(5,String.valueOf(word.getTitle().charAt(missingLetterNumber)))){
-            TextView tv = new TextView(this);
+            WordTextView tv = new WordTextView(this);
             tv.setText(s);
             tv.setPadding(20, 0, 20, 0);
             tv.setTextSize(30);
@@ -52,12 +53,21 @@ public class BaseActivity extends GameActivity{
                 @Override
                 public void onClick(View view) {
                     if(s.equals(String.valueOf(word.getTitle().charAt(missingLetterNumber)))){
-                        finish();
+                        wrightAnswer();
+
+                    }else{
+                        wrongAnswer();
                     }
                 }
             });
             llLetters.addView(tv);
         }
+    }
+    private void wrightAnswer() {
+        finish();
+    }
+    private void wrongAnswer() {
+
     }
 
     @Override

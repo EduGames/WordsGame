@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.mohheader.wordsgame.games.ChooseImageActivity;
-import com.mohheader.wordsgame.games.ChooseWordActivity;
+import com.mohheader.wordsgame.games.chooseOne.ChooseImageActivity;
+import com.mohheader.wordsgame.games.chooseOne.ChooseWordActivity;
 import com.mohheader.wordsgame.games.missingletters.BaseActivity;
 import com.mohheader.wordsgame.models.GamesManager;
 import com.mohheader.wordsgame.models.ScoreManager;

@@ -8,7 +8,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mohheader.wordsgame.R;
-import com.mohheader.wordsgame.games.ChooseImageActivity;
 import com.mohheader.wordsgame.games.Gameable;
 import com.mohheader.wordsgame.models.GamesManager;
 
