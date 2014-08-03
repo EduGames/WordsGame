@@ -1,6 +1,7 @@
 package com.mohheader.wordsgame.views;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -16,6 +17,7 @@ import com.mohheader.wordsgame.interfaces.wordable;
  */
 public class WordTextView extends TextView implements wordable {
     private static Typeface mTypeface;
+    boolean isWrong = false;
     public WordTextView(Context context) {
         this(context, null);
     }
@@ -38,5 +40,25 @@ public class WordTextView extends TextView implements wordable {
     @Override
     public void setWord(Word word) {
         setText(word.getTitle());
+    }
+
+    @Override
+    public void setWrong() {
+        isWrong = true;
+        invalidate();
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if(isWrong) {
+            Paint paint = new Paint();
+            paint.setColor(Color.RED);
+            paint.setStyle(Paint.Style.FILL_AND_STROKE);
+            paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+            paint.setStrokeWidth(10);
+            canvas.drawLine(0, 0, getWidth(), getHeight(), paint);
+            canvas.drawLine(getWidth(), 0, 0, getHeight(), paint);
+        }
     }
 }

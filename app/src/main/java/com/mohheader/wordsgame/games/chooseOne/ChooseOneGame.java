@@ -47,7 +47,7 @@ abstract class ChooseOneGame extends GameActivity {
                     if(rightWord.getTitle().equals(word.getTitle())){
                         rightAnswer();
                     }else{
-                        wrongAnswer();
+                        wrongAnswer(view);
                     }
                 }
             });
@@ -64,7 +64,8 @@ abstract class ChooseOneGame extends GameActivity {
             restart();
     }
 
-    private void wrongAnswer() {
+    private void wrongAnswer(View view) {
+        ((wordable)view).setWrong();
         ScoreManager.save(this, score.minusHalf());
         updateRatingBar();
         playSound(sounds.WRONG);
