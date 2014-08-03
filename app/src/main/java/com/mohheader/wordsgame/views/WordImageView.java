@@ -35,9 +35,13 @@ public class WordImageView extends ImageView implements wordable {
     }
 
     @Override
-    public void setWrong() {
-        isWrong = true;
-        invalidate();
+    public boolean setWrong() {
+        boolean result = !isWrong;
+        if(result) {
+            isWrong = true;
+            invalidate();
+        }
+        return result;
     }
 
     @Override

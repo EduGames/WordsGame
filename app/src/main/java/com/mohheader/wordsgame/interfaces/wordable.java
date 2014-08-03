@@ -7,5 +7,5 @@ import com.mohheader.wordsgame.models.Word;
  */
 public interface wordable {
     void setWord(Word word);
-    void setWrong();
+    boolean setWrong();
 }

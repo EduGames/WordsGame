@@ -65,10 +65,11 @@ abstract class ChooseOneGame extends GameActivity {
     }
 
     private void wrongAnswer(View view) {
-        ((wordable)view).setWrong();
-        ScoreManager.save(this, score.minusHalf());
-        updateRatingBar();
-        playSound(sounds.WRONG);
+        if(((wordable)view).setWrong()) {
+            ScoreManager.save(this, score.minusHalf());
+            updateRatingBar();
+            playSound(sounds.WRONG);
+        }
     }
     private void updateRatingBar(){
         ((RatingBar)findViewById(R.id.rating)).setRating(score.getScore());
